@@ -1,33 +1,39 @@
 import { Navigate, RouteObject } from 'react-router-dom';
 import {lazy, LazyExoticComponent} from 'react';
+import {LazyPage1, LazyPage2, LazyPage3, NoLazy} from "../pages";
 
-const LazyPage1: LazyExoticComponent<() => JSX.Element> = lazy(() => import(/* webpackChunkName: "LazyPage1" */ '../pages/LazyPage1'));
-const LazyPage2: LazyExoticComponent<() => JSX.Element> = lazy(() => import(/* webpackChunkName: "LazyPage2" */ '../pages/LazyPage2'));
-const LazyPage3: LazyExoticComponent<() => JSX.Element> = lazy(() => import(/* webpackChunkName: "LazyPage3" */ '../pages/LazyPage3'));
+const LazyLayout: LazyExoticComponent<() => JSX.Element> = lazy(() => import(/* webpackChunkName: "LazyLayout" */ '../layout/LazyLayout'));
 
 export const LazyRoutes: RouteObject[] = [
     {
-        index: true,
-        path: '/',
-        element: <Navigate to='/lazy1' replace />,
+        path: '/lazyload/',
+        handle: 'LazyLayout',
+        element: <LazyLayout />,
+        children: [
+            {
+                path: 'lazy1',
+                handle: 'lazy1',
+                element: <LazyPage1 />,
+            },
+            {
+                path: 'lazy2',
+                handle: 'lazy2',
+                element: <LazyPage2 />,
+            },
+            {
+                path: 'lazy3',
+                handle: 'lazy3',
+                element: <LazyPage3 />,
+            },
+        ],
     },
     {
-        path: '/lazy1',
-        handle: 'LazyPage 1',
-        element: <LazyPage1 />,
-    },
-    {
-        path: 'lazy2',
-        handle: 'LazyPage 2',
-        element: <LazyPage2 />,
-    },
-    {
-        path: 'lazy3',
-        handle: 'LazyPage 3',
-        element: <LazyPage3 />,
+        path: '/no-lazy',
+        handle: 'No Lazy',
+        element: <NoLazy />,
     },
     {
         path: '*',
-        element: <Navigate to={'/'} replace />,
+        element: <Navigate to={'/lazyload/'} replace />,
     },
 ];
