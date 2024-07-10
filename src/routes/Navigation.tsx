@@ -1,79 +1,47 @@
 import {
-    BrowserRouter,
-    Routes,
-    Router,
-    Link,
     NavLink,
     Outlet,
-    createBrowserRouter,
-    Navigate,
-    RouterProvider
+    createBrowserRouter, Navigate, RouterProvider,
 } from 'react-router-dom';
 import logo from '../logo.svg';
 
-import {LazyPage1, LazyPage2, LazyPage3} from '../01-lazyload/pages/';
+import {LazyRoutes} from '../01-lazyload/routes/LazyRoutes';
+import {Suspense} from "react";
 
 const Root = () => {
     return (
-
-        <div className="main-layout">
+        <div className='main-layout'>
             <nav>
-                <img src={logo} alt="React log" />
+                <img src={logo} alt='React log' />
                 <ul>
-                    <li>
-                        <NavLink
-                            to="/lazy1" className={({isActive}) => isActive ? "nav-active" : ""}
-                        >
-                            Lazy 1
-                        </NavLink>
-                    </li>
-                    <li>
-                        <NavLink
-                            to="/lazy2" className={({isActive}) => isActive ? "nav-active" : ""}
-                        >
-                            Lazy 2
-                        </NavLink>
-                    </li>
-                    <li>
-                        <NavLink
-                            to="/lazy3" className={({isActive}) => isActive ? "nav-active" : ""}
-                        >
-                            Lazy 3
-                        </NavLink>
-                    </li>
+                    {LazyRoutes.map((route, index) => (
+                        <li key={index}>
+                            <NavLink
+                                to={route.path ? route.path : '/'}
+                                className={({ isActive }) => (isActive ? 'nav-active' : '')}
+                            >
+                                {route.handle}
+                            </NavLink>
+                        </li>
+                    ))}
                 </ul>
             </nav>
-            <div id="detail">
+            <div id='detail'>
                 <Outlet />
             </div>
         </div>
     )
 }
 
-
 const router = createBrowserRouter([
     {
-        path: "/",
-        element: <Root />,
-        children: [
-            {
-                path: "/lazy1",
-                element: <LazyPage1/>
-            },
-            {
-                path: "lazy2",
-                element: <LazyPage2/>
-            },
-            {
-                path: "lazy3",
-                element: <LazyPage3/>
-            }
-
-        ]
+        path: '/',
+        element: <Suspense fallback={<span>Loading...</span>}><Root /></Suspense>,
+        children: LazyRoutes
     },
     {
-        path: "/*",
-        element: <Navigate to="/lazy1" replace={true} />
+        path: '/*',
+        element: <Navigate to='/lazy1' replace={true} />
     }
 ]);
 
