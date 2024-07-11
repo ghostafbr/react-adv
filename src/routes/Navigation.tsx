@@ -1,8 +1,4 @@
 import {
-    BrowserRouter,
-    Routes,
-    Router,
-    Link,
     NavLink,
     Outlet,
     createBrowserRouter,
@@ -10,6 +6,7 @@ import {
     RouterProvider
 } from 'react-router-dom';
 import logo from '../logo.svg';
+import {ShoppingPage} from "../02-component-patterns/pages/ShoppingPage";
 
 const Root = () => {
     return (
@@ -20,9 +17,9 @@ const Root = () => {
                 <ul>
                     <li>
                         <NavLink
-                            to="/home" className={({isActive}) => isActive ? "nav-active" : ""}
+                            to="/shop" className={({isActive}) => isActive ? "nav-active" : ""}
                         >
-                            Home
+                            Shopping
                         </NavLink>
                     </li>
                     <li>
@@ -55,8 +52,8 @@ const router = createBrowserRouter([
         element: <Root />,
         children: [
             {
-                path: "/home",
-                element: <h1>Home</h1>
+                path: "/shop",
+                element: <ShoppingPage />
             },
             {
                 path: "about",
@@ -71,7 +68,7 @@ const router = createBrowserRouter([
     },
     {
         path: "/*",
-        element: <Navigate to="/home" replace={true} />
+        element: <Navigate to="/shop" replace={true} />
     }
 ]);
 
