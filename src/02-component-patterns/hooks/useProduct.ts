@@ -8,32 +8,32 @@ interface UseProductArgs {
     initialValues?: InitialValues;
 }
 
-export const useProduct = ({ onChange, product, value = 0, initialValues }: UseProductArgs) => {
+export const useProduct = ({onChange, product, value = 0, initialValues}: UseProductArgs) => {
 
-    const [ counter, setCounter ] = useState<number>( initialValues?.count || value);
+    const [counter, setCounter] = useState<number>(initialValues?.count || value);
     const isMounted = useRef(false);
 
-    const increaseBy = ( value: number ): void => {
+    const increaseBy = (value: number): void => {
 
         // const newValue = Math.max( counter + value, 0);
         const newValue: number = Math.min(Math.max(counter + value, 0), initialValues?.maxCount || Infinity);
-        setCounter( newValue );
+        setCounter(newValue);
 
-        onChange && onChange({ count: newValue, product });
-    }
+        onChange && onChange({count: newValue, product});
+    };
 
     const reset = () => setCounter(initialValues?.count || value);
 
     useEffect(() => {
         if (!isMounted.current) return;
-        setCounter( value );
+        setCounter(value);
     }, [value]);
 
     useEffect(() => {
         isMounted.current = true;
         return () => {
             isMounted.current = false;
-        }
+        };
     }, []);
 
     return {
@@ -42,6 +42,6 @@ export const useProduct = ({ onChange, product, value = 0, initialValues }: UseP
         maxCount: initialValues?.maxCount,
         increaseBy,
         reset
-    }
+    };
 
-}
+};

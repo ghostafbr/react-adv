@@ -1,37 +1,31 @@
-import {
-    NavLink,
-    Outlet,
-    createBrowserRouter,
-    Navigate,
-    RouterProvider
-} from 'react-router-dom';
+import {createBrowserRouter, Navigate, NavLink, Outlet, RouterProvider} from 'react-router-dom';
+import {ShoppingPage} from '../02-component-patterns/pages/ShoppingPage';
 import logo from '../logo.svg';
-import {ShoppingPage} from "../02-component-patterns/pages/ShoppingPage";
 
 const Root = () => {
     return (
 
         <div className="main-layout">
             <nav>
-                <img src={logo} alt="React log" />
+                <img src={logo} alt="React log"/>
                 <ul>
                     <li>
                         <NavLink
-                            to="/shop" className={({isActive}) => isActive ? "nav-active" : ""}
+                            to="/shop" className={({isActive}) => isActive ? 'nav-active' : ''}
                         >
                             Shopping
                         </NavLink>
                     </li>
                     <li>
                         <NavLink
-                            to="/about" className={({isActive}) => isActive ? "nav-active" : ""}
+                            to="/about" className={({isActive}) => isActive ? 'nav-active' : ''}
                         >
                             About
                         </NavLink>
                     </li>
                     <li>
                         <NavLink
-                            to="/users" className={({isActive}) => isActive ? "nav-active" : ""}
+                            to="/users" className={({isActive}) => isActive ? 'nav-active' : ''}
                         >
                             Users
                         </NavLink>
@@ -39,39 +33,39 @@ const Root = () => {
                 </ul>
             </nav>
             <div id="detail">
-                <Outlet />
+                <Outlet/>
             </div>
         </div>
-    )
-}
+    );
+};
 
 
 const router = createBrowserRouter([
     {
-        path: "/",
-        element: <Root />,
+        path: '/',
+        element: <Root/>,
         children: [
             {
-                path: "/shop",
-                element: <ShoppingPage />
+                path: '/shop',
+                element: <ShoppingPage/>
             },
             {
-                path: "about",
+                path: 'about',
                 element: <h1>About</h1>
             },
             {
-                path: "users",
+                path: 'users',
                 element: <h1>Users page</h1>,
             }
 
         ]
     },
     {
-        path: "/*",
-        element: <Navigate to="/shop" replace={true} />
+        path: '/*',
+        element: <Navigate to="/shop" replace={true}/>
     }
 ]);
 
 export const Navigation = () => {
-    return (<RouterProvider router={router} />);
+    return (<RouterProvider router={router}/>);
 };

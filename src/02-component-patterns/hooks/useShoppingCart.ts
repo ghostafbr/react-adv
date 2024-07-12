@@ -3,9 +3,9 @@ import {products} from '../data/products';
 import {Product, ProductInCart} from '../interfaces/interfaces';
 
 export const useShoppingCart = () => {
-    const [shoppingCart, setShoppingCart] = useState<{[key: string]: ProductInCart}>({});
+    const [shoppingCart, setShoppingCart] = useState<{ [key: string]: ProductInCart }>({});
 
-    const onProductCountChange = ({count, product}: {count: number, product: Product}) => {
+    const onProductCountChange = ({count, product}: { count: number, product: Product }) => {
 
         setShoppingCart(oldShoppingCart => {
 
@@ -27,4 +27,4 @@ export const useShoppingCart = () => {
         shoppingCart,
         onProductCountChange
     };
-}
+};
