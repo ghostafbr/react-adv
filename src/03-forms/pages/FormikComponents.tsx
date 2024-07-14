@@ -1,6 +1,6 @@
-import '../styles/styles.css'
-import {Formik, Field, Form, ErrorMessage} from 'formik';
+import {ErrorMessage, Field, Form, Formik} from 'formik';
 import * as Yup from 'yup';
+import '../styles/styles.css';
 
 export const FormikComponents = () => {
 
@@ -16,7 +16,7 @@ export const FormikComponents = () => {
                     terms: false,
                     jobType: ''
                 }}
-                onSubmit={ (values) => {
+                onSubmit={(values) => {
                     console.log(values);
                 }}
                 validationSchema={Yup.object({
@@ -32,15 +32,15 @@ export const FormikComponents = () => {
                     terms: Yup.boolean()
                         .oneOf([true], 'Debe de aceptar las condiciones'),
                     jobType: Yup.string()
-                        .notOneOf([ 'it-jr' ], 'Esta opción no es permitida.')
+                        .notOneOf(['it-jr'], 'Esta opción no es permitida.')
                         .required('Requerido')
                 })
                 }
             >
-                { (formik) => (
+                {(formik) => (
                     <Form>
                         <label htmlFor="firstName">First Name</label>
-                        <Field name="firstName" type="text" />
+                        <Field name="firstName" type="text"/>
                         <ErrorMessage name="firstName" component="span"/>
 
                         <label htmlFor="lastName">Last Name</label>

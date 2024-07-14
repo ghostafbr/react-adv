@@ -1,12 +1,12 @@
-import {Formik, Form} from 'formik';
+import {Form, Formik} from 'formik';
+import * as Yup from 'yup';
 import {MySelect, MyTextInput} from '../components';
 import formJson from '../data/custom-form.json';
-import * as Yup from 'yup';
 
-const initialValues: {[key: string]: any} = {};
-const requiredFields: {[key: string]: any} = {};
+const initialValues: { [key: string]: any } = {};
+const requiredFields: { [key: string]: any } = {};
 
-for ( const input of formJson) {
+for (const input of formJson) {
     initialValues[input.name] = input.value;
     if (!input.validations) continue;
 
@@ -39,31 +39,31 @@ export const DynamicForm = () => {
             <Formik
                 initialValues={initialValues}
                 validationSchema={validationSchema}
-                onSubmit={ (values) => {
+                onSubmit={(values) => {
                     console.log(values);
                 }}>
-                { (formik) => (
+                {(formik) => (
                     <Form>
                         {
-                            formJson.map( ({type, name, placeholder, label, options}) => {
+                            formJson.map(({type, name, placeholder, label, options}) => {
 
                                 if (type === 'input' || type === 'password' || type === 'email') {
-                                return <MyTextInput
-                                    key={name}
-                                    type={(type as any)}
-                                    name={name}
-                                    label={label}
-                                    placeholder={placeholder}
-                                />
+                                    return <MyTextInput
+                                        key={name}
+                                        type={(type as any)}
+                                        name={name}
+                                        label={label}
+                                        placeholder={placeholder}
+                                    />;
                                 } else if (type === 'select') {
                                     return <MySelect label={label} name={name} key={name}>
                                         <option value="">Select a game</option>
                                         {
-                                            options?.map( ({id, label}: any) => {
-                                                return <option key={id} value={id}>{label}</option>
+                                            options?.map(({id, label}: any) => {
+                                                return <option key={id} value={id}>{label}</option>;
                                             })
                                         }
-                                    </MySelect>
+                                    </MySelect>;
                                 }
 
                             })

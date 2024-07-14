@@ -1,7 +1,7 @@
-import '../styles/styles.css'
-import {Formik, Form} from 'formik';
+import {Form, Formik} from 'formik';
 import * as Yup from 'yup';
 import {MyCheckBox, MySelect, MyTextInput} from '../components';
+import '../styles/styles.css';
 
 
 export const FormikAbstraction = () => {
@@ -18,7 +18,7 @@ export const FormikAbstraction = () => {
                     terms: false,
                     jobType: ''
                 }}
-                onSubmit={ (values) => {
+                onSubmit={(values) => {
                     console.log(values);
                 }}
                 validationSchema={Yup.object({
@@ -34,12 +34,12 @@ export const FormikAbstraction = () => {
                     terms: Yup.boolean()
                         .oneOf([true], 'Debe de aceptar las condiciones'),
                     jobType: Yup.string()
-                        .notOneOf([ 'it-jr' ], 'Esta opción no es permitida.')
+                        .notOneOf(['it-jr'], 'Esta opción no es permitida.')
                         .required('Requerido')
                 })
                 }
             >
-                { (formik) => (
+                {(formik) => (
                     <Form>
                         <MyTextInput label="First Name" name="firstName" type="text" placeholder="First Name"/>
                         <MyTextInput label="Last Name" name="lastName" type="text" placeholder="Last Name"/>

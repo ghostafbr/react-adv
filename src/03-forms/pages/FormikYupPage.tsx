@@ -1,6 +1,6 @@
-import '../styles/styles.css'
 import {useFormik} from 'formik';
 import * as Yup from 'yup';
+import '../styles/styles.css';
 
 export const FormikYupPage = () => {
 
@@ -27,7 +27,7 @@ export const FormikYupPage = () => {
         <div>
             <h1> Formik Yup Tutorial</h1>
 
-            <form  onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit}>
                 <label htmlFor="firstName">First name</label>
                 <input type="text" id="firstName" {...getFieldProps('firstName')} />
                 {touched.firstName && errors.firstName ? <span>{errors.firstName}</span> : null}

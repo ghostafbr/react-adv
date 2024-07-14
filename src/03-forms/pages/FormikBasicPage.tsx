@@ -1,5 +1,5 @@
-import '../styles/styles.css'
 import {FormikErrors, useFormik} from 'formik';
+import '../styles/styles.css';
 
 interface FormValues {
     firstName: string;
@@ -31,7 +31,7 @@ export const FormikBasicPage = () => {
         }
 
         return errors;
-    }
+    };
 
     const {handleChange, values, handleSubmit, errors, touched, handleBlur} = useFormik({
         initialValues: {
@@ -49,7 +49,7 @@ export const FormikBasicPage = () => {
         <div>
             <h1> Formik Basic Tutorial</h1>
 
-            <form  onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit}>
                 <label htmlFor="firstName">First name</label>
                 <input
                     type="text"

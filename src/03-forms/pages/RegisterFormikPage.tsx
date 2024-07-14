@@ -1,7 +1,7 @@
-import '../styles/styles.css'
 import {Formik} from 'formik';
 import * as Yup from 'yup';
 import {MyTextInput} from '../components';
+import '../styles/styles.css';
 
 export const RegisterFormikPage = () => {
 
@@ -42,12 +42,12 @@ export const RegisterFormikPage = () => {
                 })}
             >
 
-                { formik => (
+                {formik => (
                     <form onSubmit={formik.handleSubmit}>
-                        <MyTextInput label={'Name'} name={'name'} type={'text'} />
-                        <MyTextInput label={'Email'} name={'email'} type={'email'} />
-                        <MyTextInput label={'Password'} name={'password'} type={'password'} />
-                        <MyTextInput label={'Confirm Password'} name={'confirmPassword'} type={'password'} />
+                        <MyTextInput label={'Name'} name={'name'} type={'text'}/>
+                        <MyTextInput label={'Email'} name={'email'} type={'email'}/>
+                        <MyTextInput label={'Password'} name={'password'} type={'password'}/>
+                        <MyTextInput label={'Confirm Password'} name={'confirmPassword'} type={'password'}/>
 
                         <button type={'submit'}>Submit</button>
                         <button type={'reset'} onClick={formik.handleReset}>Reset</button>

@@ -4,6 +4,7 @@ interface Props {
     label: string;
     name: string;
     placeholder?: string;
+
     [x: string]: any;
 }
 
@@ -15,7 +16,7 @@ export const MySelect = ({label, ...props}: Props) => {
         <>
             <label htmlFor={props.id || props.name}>{label}</label>
             <select {...field} {...props} />
-            <ErrorMessage name={props.name} component="span" />
+            <ErrorMessage name={props.name} component="span"/>
         </>
     );
 };
