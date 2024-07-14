@@ -1,0 +1,85 @@
+[
+  {
+    "type": "input",
+    "name": "firstName",
+    "placeholder": "Enter your first name",
+    "label": "First Name",
+    "value": "",
+    "validations": [
+      {
+        "type": "required",
+        "message": "First name is required"
+      },
+      {
+        "type": "minLength",
+        "message": "First name must be at least 2 characters",
+        "value": 4
+      }
+    ]
+  },
+  {
+    "label": "Last Name",
+    "name": "lastName",
+    "placeholder": "Enter your last name",
+    "type": "input",
+    "value": "",
+    "validations": [
+      {
+        "type": "required",
+        "message": "Last name is required"
+      },
+      {
+        "type": "minLength",
+        "message": "First name must be at least 2 characters",
+        "value": 4
+      }
+    ]
+  },
+  {
+    "label": "Email",
+    "name": "email",
+    "placeholder": "Enter your email",
+    "type": "input",
+    "value": "",
+    "validations": [
+      {
+        "type": "required",
+        "message": "Email is required"
+      },
+      {
+        "type": "email",
+        "message": "Email is invalid"
+      }
+    ]
+  },
+  {
+    "type": "select",
+    "name": "favoriteGame",
+    "label": "Favorite Game",
+    "value": "",
+    "validations": [
+      {
+        "type": "required",
+        "message": "Favorite game is required"
+      }
+    ],
+    "options": [
+      {
+        "label": "Select a game",
+        "id": "0"
+      },
+      {
+        "label": "Chess",
+        "id": "1"
+      },
+      {
+        "label": "Metal Gear Solid",
+        "id": "2"
+      },
+      {
+        "label": "Go",
+        "id": "3"
+      }
+    ]
+  }
+]
